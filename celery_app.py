@@ -14,7 +14,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 dtype = torch.float16 if torch.cuda.is_available() else torch.float32
 
 base_model_path = "./stable-diffusion-3.5-large"
-controlnet_base_model_path = "./stable-diffusion-xl-base-1.0"
+base_model_path = "stabilityai/stable-diffusion-xl-base-1.0"
 controlnet_path = "diffusers/controlnet-canny-sdxl-1.0"
 image_encoder_path = "./InstantStyle/sdxl_models/image_encoder"
 ip_ckpt = "./InstantStyle/sdxl_models/ip-adapter_sdxl.bin"
@@ -25,7 +25,7 @@ ip_ckpt = "./InstantStyle/sdxl_models/ip-adapter_sdxl.bin"
 controlnet = ControlNetModel.from_pretrained(controlnet_path, use_safetensors=False, torch_dtype=dtype).to(device,memory_format=torch.channels_last)
 
 pipe_controlnet = StableDiffusionXLControlNetPipeline.from_pretrained(
-        controlnet_base_model_path,
+        base_model_path,
         controlnet=controlnet,
         torch_dtype=dtype,
         add_watermarker=False,
