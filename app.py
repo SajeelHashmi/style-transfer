@@ -71,6 +71,8 @@ async def style_transfer(
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Error submitting task: {str(e)}")
 
+
+
 @app.get("/result/{task_id}")
 async def get_task_result(task_id: str, return_format: Optional[str] = "binary"):
     try:
@@ -118,6 +120,7 @@ async def get_task_result(task_id: str, return_format: Optional[str] = "binary")
             "status": "Error", 
             "error": str(e)
         }, status_code=500)
+
 
 @app.get("/health")
 async def health_check():

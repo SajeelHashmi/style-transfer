@@ -8,7 +8,7 @@ from model_singleton import ModelSingleton
 
 # Initialize Celery
 celery = Celery("tasks", broker="redis://localhost:6379/0", backend="redis://localhost:6379/0")
-
+model_singleton = ModelSingleton()
 # Configure Celery
 celery.conf.update(
     worker_prefetch_multiplier=1,
