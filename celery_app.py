@@ -9,6 +9,7 @@ from model_singleton import ModelSingleton
 # Initialize Celery
 celery = Celery("tasks", broker="redis://localhost:6379/0", backend="redis://localhost:6379/0")
 model_singleton = ModelSingleton()
+model_singleton.get_ip_adapter()  # Preload the model to avoid delays in task execution
 # Configure Celery
 celery.conf.update(
     worker_prefetch_multiplier=1,
