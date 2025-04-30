@@ -53,6 +53,7 @@ def generate_image_task(prompt):
 def generate_style_transfer_task(prompt, style_image_bytes, source_image_bytes, scale, control_scale, guidance_scale, layout_enabled=False):
     try:
         # Get the singleton instance with initialized models
+        print("\n\n\n\n\nSTARTING STYLE TRANSFER TASK\n\n\n\n")
         model_singleton = ModelSingleton()
         pipe_controlnet = model_singleton.get_controlnet_pipeline()
         ip_model = model_singleton.get_ip_adapter(layout_enabled=layout_enabled)
@@ -86,6 +87,8 @@ def generate_style_transfer_task(prompt, style_image_bytes, source_image_bytes, 
         # Convert output to bytes
         img_bytes = BytesIO()
         images[0].save(img_bytes, format="PNG")
+        print("\n\n\n\n\nCOMPLETE STYLE TRANSFER TASK\n\n\n\n")
+
         return img_bytes.getvalue()
     except Exception as e:
         # Capture and log the error
